@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TaskManager.Services;
+using TaskManager.Services.Interfaces;
 
 namespace TaskManger.Web.API
 {
@@ -25,7 +27,13 @@ namespace TaskManger.Web.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureControllerServices(services);
             services.AddControllers();
+        }
+
+        private void ConfigureControllerServices(IServiceCollection services)
+        {
+            services.AddScoped<ITodoService, TodoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
