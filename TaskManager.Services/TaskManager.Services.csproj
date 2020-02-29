@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskManger.ModelMappers\TaskManger.ModelMappers.csproj" />
     <ProjectReference Include="..\TaskManger.Models\TaskManger.Models.csproj" />
   </ItemGroup>
 

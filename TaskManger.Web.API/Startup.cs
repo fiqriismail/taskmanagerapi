@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TaskManager.Services;
 using TaskManager.Services.Interfaces;
+using TaskManger.Models.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManger.Web.API
 {
@@ -28,7 +30,12 @@ namespace TaskManger.Web.API
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureControllerServices(services);
+            services.AddDbContext<TodoDbContext>(config => 
+            {
+                config.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
             services.AddControllers();
+
         }
 
         private void ConfigureControllerServices(IServiceCollection services)
